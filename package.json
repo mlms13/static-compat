@@ -1,0 +1,22 @@
+{
+  "name": "compatibility",
+  "version": "0.0.0",
+  "description": "## The Why",
+  "main": "src/compat.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Martin-Smucker",
+  "license": "MIT",
+  "dependencies": {
+    "esprima": "^1.2.2",
+    "esprima-walk": "^0.1.0"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "mocha": "^1.21.4"
+  }
+}
