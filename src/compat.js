@@ -8,8 +8,8 @@ module.exports.check = function (jsString) {
 
   // traverse AST
   walk(ast, function (node) {
-    if (node.type === 'ExpressionStatement') {
-      if (node.expression.callee && node.expression.callee.property.name === 'filter') {
+    if (node.expression && node.expression.type === 'CallExpression') {
+      if (node.expression.callee.property.name === 'filter') {
         errors.push('The `filter` function does not work in IE8');
       }
     }
