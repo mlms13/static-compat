@@ -1,5 +1,6 @@
 var esprima = require('esprima'),
-    walk    = require('esprima-walk');
+    walk    = require('esprima-walk'),
+    tests   = require('./tests');
 
 module.exports.check = function (jsString) {
   // given a string of javascript, parse to AST
@@ -7,11 +8,15 @@ module.exports.check = function (jsString) {
       errors = [];
 
   // traverse AST
-  walk(ast, function (node) {
+  walk.walkAddParent(ast, function (node) {
     if (node.expression && node.expression.type === 'CallExpression') {
-      if (node.expression.callee.property.name === 'filter') {
-        errors.push('The `filter` function does not work in IE8');
-      }
+      tests.method.forEach(function (test) {
+        var result = test.run(node);
+
+        if (result) {
+          errors.push(result);
+        }
+      });
     }
   });
 
